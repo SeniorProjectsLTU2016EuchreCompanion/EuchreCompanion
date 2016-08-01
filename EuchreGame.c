@@ -1,7 +1,5 @@
 /*
-*
 * File to test and explore libnfc
-*
 */
 
 #include <stdlib.h>
