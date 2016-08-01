@@ -20,7 +20,7 @@ print_card(const uint8_t *pbtData, const size_t szBytes)
     }
 }
 
-int main(int argc, const char *argv90)
+int main(int argc, const char *argv[])
 {
     nfc_device *pnd;
     nfc_target nt;
