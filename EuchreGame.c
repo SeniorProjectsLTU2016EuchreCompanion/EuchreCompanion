@@ -3,25 +3,50 @@
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <nfc/nfc.h>
 
-static void
-print_card(const uint8_t *pbtData, const size_t szBytes)
+static void print_card(const uint8_t *pbtData, const size_t szBytes, pFile)
 {
-    //compare data to card values and print card
-    if (pbtData[0] == 0xb1) {
-        printf("Jack of Spades\n");
-    }
-    else if (pbtData[0] == 0x61) {
-        printf("Ace of Spades\n");
-    }
-    else {
-        printf("Card Not Found");
-    }
+	uint32_t id = 0xFFFFFFFF;
+	uint32_t *data;
+	char val = '0';
+	char suit = 'A';
+	
+	data = (uint32_t*)pbtData;
+	
+	pFile = fopen("Cards.txt", "r");
+	
+	if (pFile != NULL)
+	{
+		while (!feof(pFile))
+		{
+			fscanf(pFile, "%x %c %c", id, val, suit);
+			if (id == data)
+			{
+				break;
+			}
+		}
+		fclose (pFile);
+	}
+	else
+	{
+		printf("Could not open the file!\n");
+	}
+	
+	if (id == 0xFFFFFFFF) || (val = '0') || (suit == 'A')
+	{
+		printf("failed to read database!\n");
+	}
+	else
+	{
+		printf("%c of %c was played.\n", val, suit);
+	}
 }
 
 int main(int argc, const char *argv[])
 {
+    File * pFile;
     nfc_device *pnd;
     nfc_target nt;
 
@@ -55,7 +80,7 @@ int main(int argc, const char *argv[])
     for (int i = 0; i < 2; i++) {
         if (nfc_initiator_select_passive_target(pnd, nmMifare, NULL, 0, &nt) > 0) {
             printf("The following (NFC) Card was found:\n");
-            print_card(nt.nti.nai.abtUid, nt.nti.nai.szUidLen);
+            print_card(nt.nti.nai.abtUid, nt.nti.nai.szUidLen, pFile);
         }
         while (0 == nfc_initiator_target_is_present(pnd, NULL)){}
     }
