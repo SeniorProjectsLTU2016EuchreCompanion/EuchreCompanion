@@ -2,7 +2,7 @@
 Senior Project utilizing libnfc to make a card table game
 
 Cable I/O
-3.3V = 4
+3.3V = 4 \n
 SCK = 22
 MISO = 18
 MOSI = 21
