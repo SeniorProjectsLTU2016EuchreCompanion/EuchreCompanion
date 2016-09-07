@@ -4,8 +4,8 @@ Senior Project utilizing libnfc to make a card table game
 Cable I/O
 3.3V = 4
 SCK = 22
-MISO = 18
-MOSI = 21
+MOSI = 18
+MISO = 21
 SCL = 17
 GND = 1
 
