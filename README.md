@@ -15,3 +15,6 @@ set date
 ./configure --with-drivers=pn532_spi
 make
 make install
+
+
+http://www.mathworks.com/help/supportpkg/beagleboneio/ug/use-the-beaglebone-black-spi-interface-to-connect-to-a-device.html
