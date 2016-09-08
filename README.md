@@ -18,3 +18,5 @@ make install
 
 
 http://www.mathworks.com/help/supportpkg/beagleboneio/ug/use-the-beaglebone-black-spi-interface-to-connect-to-a-device.html
+
+sudo ntpdate pool.ntp.org
